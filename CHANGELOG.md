@@ -27,7 +27,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Set request timeout for OIDC query. [PR #1601](https://github.com/3scale/APIcast/pull/1601) [THREESCALE-8006](https://redhat.atlassian.net/browse/THREESCALE-8006)
 - Set upstream metrics when sending request via proxy. [PR #1598](https://github.com/3scale/APIcast/pull/1598) [THREESCALE-10571](https://redhat.atlassian.net/browse/THREESCALE-15071)
 - Certificate is never verified in API request for https backend via proxy [PR #1573](https://github.com/3scale/APIcast/pull/1568) [THREESCALE-11944](https://redhat.atlassian.net/browse/THREESCALE-11944)
-- Add whitelist_deny_unmatched option for keycloak_role_check policy [PR #1605](https://github.com/3scale/APIcast/pull/1605) [THREESCALE-11887](https://redhat.atlassian.net/browse/THREESCALE-11887)
 
 ### Added
 - Update APIcast schema manifest [PR #1550](https://github.com/3scale/APIcast/pull/1550)
@@ -44,6 +43,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Bump liquid-lua to 0.2.1 [PR #1590](https://github.com/3scale/APIcast/pull/1590)
 - Bump nginx-lua-prometheus to 0.20220527 [PR #1591](https://github.com/3scale/APIcast/pull/1591)
 - Bump net-url to 1.2-1 [PR #1591](https://github.com/3scale/APIcast/pull/1606)
+- Add `whitelist_deny_unmatched` option to keycloak_role_check policy [PR #1605](https://github.com/3scale/APIcast/pull/1605) [THREESCALE-11887](https://redhat.atlassian.net/browse/THREESCALE-11887)
 
 ### Removed
 

@@ -729,6 +729,55 @@ describe('Keycloak Role check policy', function()
           assert.same(ngx.status, 403)
         end)
       end)
+
+      describe('missing JWT behaviour', function()
+        local context_no_jwt = {
+          service = {
+            auth_failed_status = 403,
+            error_auth_failed = "auth failed"
+          }
+        }
+
+        describe('whitelist_deny_unmatched true', function()
+          local policy
+
+          before_each(function()
+            policy = KeycloakRoleCheckPolicy.new({ scopes = scopes, type = "whitelist", whitelist_deny_unmatched = true })
+          end)
+
+          it('denies when path matches a configured scope', function()
+            ngx.var = { uri = '/protected' }
+            policy:access(context_no_jwt)
+            assert.same(ngx.status, 403)
+          end)
+
+          it('denies when path does not match any configured scope', function()
+            ngx.var = { uri = '/unmatched' }
+            policy:access(context_no_jwt)
+            assert.same(ngx.status, 403)
+          end)
+        end)
+
+        describe('whitelist_deny_unmatched false', function()
+          local policy
+
+          before_each(function()
+            policy = KeycloakRoleCheckPolicy.new({ scopes = scopes, type = "whitelist", whitelist_deny_unmatched = false })
+          end)
+
+          it('allows when path matches a configured scope', function()
+            ngx.var = { uri = '/protected' }
+            policy:access(context_no_jwt)
+            assert.not_same(ngx.status, 403)
+          end)
+
+          it('allows when path does not match any configured scope', function()
+            ngx.var = { uri = '/unmatched' }
+            policy:access(context_no_jwt)
+            assert.not_same(ngx.status, 403)
+          end)
+        end)
+      end)
     end)
   end)
 end)
